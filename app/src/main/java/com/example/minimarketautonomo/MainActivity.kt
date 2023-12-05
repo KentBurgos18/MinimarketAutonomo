@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.minimarketautonomo.navigation.AppNavegation
+import com.example.minimarketautonomo.ui.theme.Fondo
 import com.example.minimarketautonomo.ui.theme.MinimarketAutonomoTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Fondo
                 ) {
                     AppNavegation()
                 }
