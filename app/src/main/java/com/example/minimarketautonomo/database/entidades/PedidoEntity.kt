@@ -15,7 +15,5 @@ data class PedidoEntity(
     @ColumnInfo(name = "id") val id: Int = 0,
     @ColumnInfo(name = "fecha") val Fecha: String,
     @ColumnInfo(name = "descripcion") val Descripcion: String,
-    @ColumnInfo(name = "pago_Id") val peticion_medico_Id: Int,
-    @ColumnInfo(name = "descuentoId") val descuentoId: Int
-
+    @ColumnInfo(name = "pago_Id") val Pago_Id: Int,
 ){}

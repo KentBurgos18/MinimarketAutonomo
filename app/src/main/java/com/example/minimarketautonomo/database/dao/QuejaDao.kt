@@ -10,7 +10,7 @@ import com.example.minimarketautonomo.database.entidades.QuejaEntity
 
 @Dao
 interface QuejaDao {
-    @Query("SELECT * FROM quejas" )
+    @Query("SELECT * FROM queja_table" )
     suspend fun getAllQuejas():List<QuejaEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

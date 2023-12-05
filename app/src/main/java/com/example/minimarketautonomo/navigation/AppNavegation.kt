@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.minimarketautonomo.screen.IniciarSesion
+import com.example.minimarketautonomo.screen.SplashScreen
 
 @Composable
 fun AppNavegation() {
@@ -13,6 +14,9 @@ fun AppNavegation() {
     NavHost(navController =navController , startDestination = AppScreens.SplashScreen.route){
         composable(route = AppScreens.IniciarSesion.route){
             IniciarSesion(navController)
+        }
+        composable(route = AppScreens.SplashScreen.route){
+            SplashScreen(navController)
         }
     }
 
