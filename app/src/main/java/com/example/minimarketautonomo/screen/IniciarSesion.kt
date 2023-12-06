@@ -130,7 +130,7 @@ fun FormularioInicioSesion(navController: NavController){
                         if (room.getUsuarioDao().getAllUsuarios().any { it.Correo == correo.value })
                         {
                             navController.popBackStack()
-                            //navController.navigate(route = AppScreens.Home.route)
+                            navController.navigate(route = AppScreens.Home.route)
                         }
                         else
                         {

@@ -5,6 +5,7 @@ import androidx.compose.ui.input.key.Key.Companion.Home
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.minimarketautonomo.screen.Home
 import com.example.minimarketautonomo.screen.IniciarSesion
 import com.example.minimarketautonomo.screen.Registro
 import com.example.minimarketautonomo.screen.SplashScreen
@@ -21,6 +22,9 @@ fun AppNavegation() {
         }
         composable(route = AppScreens.Registro.route){
             Registro(navController)
+        }
+        composable(route = AppScreens.Home.route){
+            Home(navController)
         }
     }
 
