@@ -7,7 +7,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "pedido_table",
     foreignKeys = [
-        ForeignKey(entity = PagoEntity::class, parentColumns = ["id"], childColumns = ["pago_Id"])
+        ForeignKey(entity = PagoEntity::class, parentColumns = ["id"], childColumns = ["pago_Id"],
+            onDelete = ForeignKey.CASCADE
+        )
     ]
 )
 data class PedidoEntity(

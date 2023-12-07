@@ -5,6 +5,7 @@ import androidx.compose.ui.input.key.Key.Companion.Home
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.minimarketautonomo.screen.Calificanos
 import com.example.minimarketautonomo.screen.EditarPago
 import com.example.minimarketautonomo.screen.EliminarPago
 import com.example.minimarketautonomo.screen.EliminarPedido
@@ -74,6 +75,10 @@ fun AppNavegation() {
         composable(route = AppScreens.VistaQuejas.route){
             VistaQuejas(navController)
         }
+        composable(route = AppScreens.Calificanos.route){
+            Calificanos(navController)
+        }
+
 
 
 

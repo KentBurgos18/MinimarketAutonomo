@@ -17,6 +17,8 @@ sealed class AppScreens(val route: String){
     object PedidosRegistrados: AppScreens("pedidosRegistrados")
     object EliminarPedido: AppScreens("eliminarPedido")
     object VistaQuejas: AppScreens("vistaQuejas")
+    object Calificanos: AppScreens("calificanos")
+
 
 
 

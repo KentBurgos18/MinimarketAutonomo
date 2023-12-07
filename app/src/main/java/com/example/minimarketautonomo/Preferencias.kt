@@ -8,18 +8,23 @@ class Preferencias(val context: Context) {
     val SHARED_NAME = "PagoValor"
     val SHARED_NAME2 = "PagoContador"
     val SHARED_NAME3 = "Id"
+    val SHARED_NAME4 = "Calificanos"
+
 
 
     val SHARED_VALOR = "Valor"
     val SHARED_CONTADOR = "ContadorProductos"
     val SHARED_ID = "IdPago"
+    val SHARED_RATE = "Calificacion app"
 
 
 
 
     val storage = context.getSharedPreferences(SHARED_NAME, 0)
     val storage2 = context.getSharedPreferences(SHARED_NAME2, 0)
-    val storage3 = context.getSharedPreferences(SHARED_NAME2, 0)
+    val storage3 = context.getSharedPreferences(SHARED_NAME3, 0)
+    val storage4 = context.getSharedPreferences(SHARED_NAME4, 0)
+
 
 
 
@@ -45,6 +50,15 @@ class Preferencias(val context: Context) {
 
     fun getIde(): Int {
         return storage3.getInt(SHARED_ID, 0)!!
+    }
+
+    fun saveRate(rate: Int){
+        storage4.edit().putInt(SHARED_RATE, rate).apply()
+
+    }
+
+    fun getRate(): Int {
+        return storage4.getInt(SHARED_RATE, 0)!!
     }
 
 

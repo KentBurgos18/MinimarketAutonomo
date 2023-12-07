@@ -46,11 +46,11 @@ fun IniciarSesion(navController: NavController){
         ), horizontalArrangement = Arrangement.End) {
         Button(
             onClick = {
-                //navController.navigate(route = AppScreens.Ajustes.route)
+                navController.navigate(route = AppScreens.Calificanos.route)
             },
             modifier = Modifier.padding(vertical = 0.dp, horizontal = 0.dp)
         ) {
-            Text("AJUSTES")
+            Text("CALIFICANOS")
         }
     }
     Text(text = "MINIMARKET", modifier = Modifier
