@@ -7,6 +7,7 @@ import com.example.minimarketautonomo.database.MinimarketDatabase
 class Inicio: Application() {
 
     companion object{
+        lateinit var preferencias:Preferencias
         lateinit var room: MinimarketDatabase
 
 
@@ -14,6 +15,7 @@ class Inicio: Application() {
 
     override fun onCreate() {
         super.onCreate()
+        preferencias = Preferencias(applicationContext)
         room = Room
             .databaseBuilder(applicationContext, MinimarketDatabase::class.java, "minimarket_database")
             .fallbackToDestructiveMigration()
