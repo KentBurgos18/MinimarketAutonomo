@@ -17,8 +17,10 @@ import com.example.minimarketautonomo.screen.Pedido
 import com.example.minimarketautonomo.screen.PedidoCrud
 import com.example.minimarketautonomo.screen.PedidosRegistrados
 import com.example.minimarketautonomo.screen.Producto
+import com.example.minimarketautonomo.screen.Queja
 import com.example.minimarketautonomo.screen.Registro
 import com.example.minimarketautonomo.screen.SplashScreen
+import com.example.minimarketautonomo.screen.VistaQuejas
 
 @Composable
 fun AppNavegation() {
@@ -66,6 +68,13 @@ fun AppNavegation() {
         composable(route = AppScreens.PedidosRegistrados.route){
             PedidosRegistrados(navController)
         }
+        composable(route = AppScreens.Queja.route){
+            Queja(navController)
+        }
+        composable(route = AppScreens.VistaQuejas.route){
+            VistaQuejas(navController)
+        }
+
 
 
     }
