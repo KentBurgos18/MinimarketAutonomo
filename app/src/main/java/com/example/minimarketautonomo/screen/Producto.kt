@@ -39,13 +39,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.Timer
-import java.util.TimerTask
 
 
 @Composable
 fun Producto(navController: NavController){
-    val timer = Timer()
+
     Texto2()
     Seleccion()
     DetallesDePago(navController)
@@ -57,12 +55,22 @@ fun Producto(navController: NavController){
 fun Texto2(){
     Text(text = "PRODUCTOS",
         textAlign = TextAlign.Center,
-        fontSize = 33.sp,
+        fontSize = 35.sp,
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Bold,
         color = Color.Black,
         modifier = Modifier
             .padding(horizontal = 0.dp, vertical = 10.dp)
+            .fillMaxWidth()
+    )
+    Text(text = "LLENE SU CARRITO CON NUESTROS PRODUCTOS :)",
+        textAlign = TextAlign.Center,
+        fontSize = 13.sp,
+        fontFamily = FontFamily.Monospace,
+        fontWeight = FontWeight.SemiBold,
+        color = Color.Black,
+        modifier = Modifier
+            .height(20.dp)
             .fillMaxWidth()
     )
 }
@@ -72,7 +80,6 @@ fun Seleccion(){
 
     var contador = preferencias.getContador()
     var valor = preferencias.getValor()
-
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -98,6 +105,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -133,6 +142,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -168,6 +179,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -211,6 +224,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -246,6 +261,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -281,6 +298,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -324,6 +343,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -359,6 +380,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -394,6 +417,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -437,6 +462,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -472,6 +499,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -507,6 +536,8 @@ fun Seleccion(){
                         .clickable {
                             println(preferencias.getContador())
                             println(preferencias.getValor())
+                            contador = preferencias.getContador()
+                            valor = preferencias.getValor()
                             contador++
                             // Ejecuta la tarea de incrementar el contador en paralelo
                             val task1 = GlobalScope.launch {
@@ -563,11 +594,19 @@ fun DetallesDePago(navController:NavController){
                 )
             }
             Column(modifier = Modifier.weight(4.5f)
-                .height(70.dp)) {
+                .height(120.dp)) {
                 Button(
                     onClick = { navController.navigate(route = AppScreens.Pago.route) },
                 ) {
                     Text("VER PAGO")
+                }
+                Button(
+                    onClick = {
+                        preferencias.saveContador(0)
+                        preferencias.saveValor(0)
+                    }
+                ) {
+                    Text("REINICIAR CARRITO")
                 }
             }
 
