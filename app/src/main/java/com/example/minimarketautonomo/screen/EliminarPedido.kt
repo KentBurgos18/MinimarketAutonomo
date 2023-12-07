@@ -23,8 +23,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.minimarketautonomo.Inicio
-import com.example.minimarketautonomo.Inicio.Companion.preferencias
 import com.example.minimarketautonomo.database.entidades.PagoEntity
+import com.example.minimarketautonomo.database.entidades.PedidoEntity
 import com.example.minimarketautonomo.navigation.AppScreens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,20 +32,13 @@ import kotlinx.coroutines.withContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Pago(navController: NavController){
+fun EliminarPedido(navController: NavController){
 
     LogoInicio()
-    // Variables para almacenar los valores de los campos del formulario
 
-    var tipo = remember { mutableStateOf("") }
+    var ide = remember { mutableStateOf("") }
     var mostrarAviso = remember { mutableStateOf(false) } // Variable para mostrar el aviso
     val db = Inicio.room
-
-    var valorDePago= preferencias.getValor()
-    var cantidadProductos= preferencias.getContador()
-
-    var valor = valorDePago.toString()
-    var cantidad = cantidadProductos.toString()
 
     val scope = rememberCoroutineScope()
 
@@ -60,69 +53,55 @@ fun Pago(navController: NavController){
     {
 
         TextField(
-            value = valor,
-            onValueChange = { },
-            label = { Text("Valor", color = Color.Black) },
-            readOnly = true, // Block user input
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier
-                .background(Color.White)
-                .border(3.dp, Color.Black, RoundedCornerShape(5.dp))
-        )
-
-
-        TextField(
-            value = tipo.value,
-            onValueChange = { tipo.value = it },
-            label = { Text("Tipo", color = Color.Black) },
-            modifier = Modifier.background(Color.White)
-                .border(3.dp, Color.Black, RoundedCornerShape(5.dp)),
-        )
-
-        TextField(
-            value = cantidad,
-            onValueChange = { },
-            readOnly = true, // Block user input
-            label = { Text("Cantidad de productos", color = Color.Black) },
+            value = ide.value,
+            onValueChange = { ide.value = it },
+            label = { Text("ID", color = Color.Black) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.background(Color.White)
                 .border(3.dp, Color.Black, RoundedCornerShape(5.dp)),
         )
-
 
         Button(
             onClick = {
-                if (valor.isBlank() || tipo.value.isBlank() || cantidad.isBlank() )
-
+                if ( ide.value.isBlank())
                 {
                     mostrarAviso.value = true // Mostrar el aviso si algún campo está vacío
 
                 }
                 else
                 {
-                    val pago = PagoEntity(
-                        Valor = valor.toInt(),
-                        Tipo = tipo.value,
-                        Cantidad = cantidad.toInt()
-                    )
-                    preferencias.saveValor(0)
-                    preferencias.saveContador(0)
+                    var Id = ide.value.toInt()
+
                     scope.launch {
                         withContext(Dispatchers.Main) {
-                            db.getPagoDao().insert(pago)
-                            val pagosGuardados = db.getPagoDao().getAllPagos()
-                            navController.navigate(route = AppScreens.Home.route)
-                            println(pagosGuardados)
+                            if (Inicio.room.getPedidoDao().getAllPedidos().any { it.id == Id })
+                            {
+                                val pedido = PedidoEntity(
+                                    id = Id,
+                                    Fecha = "",
+                                    Descripcion = "",
+                                    Pago_Id = 0
+                                )
+                                db.getPedidoDao().delete(pedido)
+                                val pedidosGuardados = db.getPedidoDao().getAllPedidos()
+                                navController.navigate(route = AppScreens.Home.route)
+                                println(pedidosGuardados)
+
+                            }
                         }
+
                     }
+
 
                 }
 
             },
-            modifier = Modifier.padding(vertical = 16.dp, horizontal = 77.dp)
+            modifier = Modifier.padding(vertical = 10.dp, horizontal = 77.dp)
         ) {
-            Text("Registrar Pago")
+            Text("Eliminar pedido del historial")
         }
+
+
     }
     if (mostrarAviso.value === true) {
         AlertDialog(

@@ -25,27 +25,29 @@ import androidx.navigation.NavController
 import com.example.minimarketautonomo.Inicio
 import com.example.minimarketautonomo.Inicio.Companion.preferencias
 import com.example.minimarketautonomo.database.entidades.PagoEntity
+import com.example.minimarketautonomo.database.entidades.PedidoEntity
 import com.example.minimarketautonomo.navigation.AppScreens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Pago(navController: NavController){
+fun Pedido(navController: NavController){
 
     LogoInicio()
-    // Variables para almacenar los valores de los campos del formulario
 
-    var tipo = remember { mutableStateOf("") }
+    var fecha = remember { mutableStateOf("") }
+    var descripcion = remember { mutableStateOf("") }
+
     var mostrarAviso = remember { mutableStateOf(false) } // Variable para mostrar el aviso
     val db = Inicio.room
 
-    var valorDePago= preferencias.getValor()
-    var cantidadProductos= preferencias.getContador()
+    var idPago = preferencias.getIde()
+    var pago = idPago.toString()
 
-    var valor = valorDePago.toString()
-    var cantidad = cantidadProductos.toString()
+
 
     val scope = rememberCoroutineScope()
 
@@ -60,30 +62,27 @@ fun Pago(navController: NavController){
     {
 
         TextField(
-            value = valor,
-            onValueChange = { },
-            label = { Text("Valor", color = Color.Black) },
-            readOnly = true, // Block user input
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier
-                .background(Color.White)
-                .border(3.dp, Color.Black, RoundedCornerShape(5.dp))
+            value = fecha.value,
+            onValueChange = { fecha.value = it },
+            label = { Text("Fecha", color = Color.Black) },
+            modifier = Modifier.background(Color.White)
+                .border(3.dp, Color.Black, RoundedCornerShape(5.dp)),
         )
 
 
         TextField(
-            value = tipo.value,
-            onValueChange = { tipo.value = it },
-            label = { Text("Tipo", color = Color.Black) },
+            value = descripcion.value,
+            onValueChange = { descripcion.value = it },
+            label = { Text("Descripcion", color = Color.Black) },
             modifier = Modifier.background(Color.White)
                 .border(3.dp, Color.Black, RoundedCornerShape(5.dp)),
         )
 
         TextField(
-            value = cantidad,
+            value = pago,
             onValueChange = { },
-            readOnly = true, // Block user input
-            label = { Text("Cantidad de productos", color = Color.Black) },
+            readOnly = true,
+            label = { Text("Pago", color = Color.Black) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.background(Color.White)
                 .border(3.dp, Color.Black, RoundedCornerShape(5.dp)),
@@ -92,7 +91,7 @@ fun Pago(navController: NavController){
 
         Button(
             onClick = {
-                if (valor.isBlank() || tipo.value.isBlank() || cantidad.isBlank() )
+                if (fecha.value.isBlank() || descripcion.value.isBlank() || pago.isBlank() )
 
                 {
                     mostrarAviso.value = true // Mostrar el aviso si algún campo está vacío
@@ -100,19 +99,17 @@ fun Pago(navController: NavController){
                 }
                 else
                 {
-                    val pago = PagoEntity(
-                        Valor = valor.toInt(),
-                        Tipo = tipo.value,
-                        Cantidad = cantidad.toInt()
+                    val pedido = PedidoEntity(
+                        Fecha = fecha.value,
+                        Descripcion = descripcion.value,
+                        Pago_Id = pago.toInt()
                     )
-                    preferencias.saveValor(0)
-                    preferencias.saveContador(0)
                     scope.launch {
                         withContext(Dispatchers.Main) {
-                            db.getPagoDao().insert(pago)
-                            val pagosGuardados = db.getPagoDao().getAllPagos()
+                            db.getPedidoDao().insert(pedido)
+                            val pedidosGuardados = db.getPedidoDao().getAllPedidos()
                             navController.navigate(route = AppScreens.Home.route)
-                            println(pagosGuardados)
+                            println(pedidosGuardados)
                         }
                     }
 
@@ -121,7 +118,7 @@ fun Pago(navController: NavController){
             },
             modifier = Modifier.padding(vertical = 16.dp, horizontal = 77.dp)
         ) {
-            Text("Registrar Pago")
+            Text("Realizar Pedido")
         }
     }
     if (mostrarAviso.value === true) {

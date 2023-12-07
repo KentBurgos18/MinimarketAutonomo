@@ -25,6 +25,4 @@ interface PagoDao {
 
     @Delete
     suspend fun delete(pago: PagoEntity)
-
-
 }

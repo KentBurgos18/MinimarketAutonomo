@@ -13,6 +13,12 @@ sealed class AppScreens(val route: String){
     object PagosRegistrados: AppScreens("pagosRegistrados")
     object EditarPago: AppScreens("editarPago")
     object EliminarPago: AppScreens("eliminarPago")
+    object PedidoCrud: AppScreens("pedidoCrud")
+    object PedidosRegistrados: AppScreens("pedidosRegistrados")
+    object EliminarPedido: AppScreens("eliminarPedido")
+
+
+
 
 
 

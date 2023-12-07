@@ -7,11 +7,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.minimarketautonomo.screen.EditarPago
 import com.example.minimarketautonomo.screen.EliminarPago
+import com.example.minimarketautonomo.screen.EliminarPedido
 import com.example.minimarketautonomo.screen.Home
 import com.example.minimarketautonomo.screen.IniciarSesion
 import com.example.minimarketautonomo.screen.Pago
 import com.example.minimarketautonomo.screen.PagoCrud
 import com.example.minimarketautonomo.screen.PagosRegistrados
+import com.example.minimarketautonomo.screen.Pedido
+import com.example.minimarketautonomo.screen.PedidoCrud
+import com.example.minimarketautonomo.screen.PedidosRegistrados
 import com.example.minimarketautonomo.screen.Producto
 import com.example.minimarketautonomo.screen.Registro
 import com.example.minimarketautonomo.screen.SplashScreen
@@ -50,6 +54,19 @@ fun AppNavegation() {
         composable(route = AppScreens.EliminarPago.route){
             EliminarPago(navController)
         }
+        composable(route = AppScreens.Pedido.route){
+            Pedido(navController)
+        }
+        composable(route = AppScreens.EliminarPedido.route){
+            EliminarPedido(navController)
+        }
+        composable(route = AppScreens.PedidoCrud.route){
+            PedidoCrud(navController)
+        }
+        composable(route = AppScreens.PedidosRegistrados.route){
+            PedidosRegistrados(navController)
+        }
+
 
     }
 

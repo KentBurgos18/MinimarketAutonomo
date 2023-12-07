@@ -130,7 +130,7 @@ fun Opciones(navController: NavController){
         ) {
             Card(
                 modifier = Modifier.clickable{
-                    navController.navigate(route = AppScreens.Pedido.route)
+                    navController.navigate(route = AppScreens.PedidoCrud.route)
                 }
             ) {
                 Text(text = "PEDIDOS",
