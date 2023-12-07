@@ -41,16 +41,32 @@ import com.example.minimarketautonomo.ui.theme.Fondo
 
 @Composable
 fun Home(navController: NavController){
-    Row(modifier = Modifier
-        .fillMaxWidth(
-        ), horizontalArrangement = Arrangement.End) {
-        Button(
-            onClick = {
-                navController.navigate(route = AppScreens.Queja.route)
-            },
-            modifier = Modifier.padding(vertical = 0.dp, horizontal = 0.dp)
-        ) {
-            Text("QUEJAS")
+    Column(modifier = Modifier.fillMaxSize()) {
+        Row(modifier = Modifier
+            .fillMaxWidth(),
+            horizontalArrangement = Arrangement.End) {
+            Button(
+                onClick = {
+                    navController.navigate(route = AppScreens.Queja.route)
+                },
+                modifier = Modifier.padding(vertical = 0.dp, horizontal = 0.dp)
+            ) {
+                Text("QUEJAS")
+            }
+        }
+        Row(modifier = Modifier
+            .fillMaxWidth(),
+            horizontalArrangement = Arrangement.End) {
+            Button(
+                onClick = {
+                    navController.navigate(route = AppScreens.PagoCrud.route)
+                },
+                modifier = Modifier.padding(vertical = 0.dp, horizontal = 0.dp)
+            ) {
+                Text(" PAGOS ")
+            }
+
+
         }
     }
     LogoInicio()

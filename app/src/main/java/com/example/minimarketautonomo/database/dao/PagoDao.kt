@@ -14,6 +14,9 @@ interface PagoDao {
     @Query("SELECT * FROM pago_table")
     suspend fun getAllPagos(): List<PagoEntity>
 
+    @Query("SELECT * FROM pago_table WHERE id = :id")
+    fun getPagoById(id: Int): PagoEntity
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(pago: PagoEntity)
 
@@ -22,4 +25,6 @@ interface PagoDao {
 
     @Delete
     suspend fun delete(pago: PagoEntity)
+
+
 }

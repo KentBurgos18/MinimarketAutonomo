@@ -33,6 +33,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.minimarketautonomo.Inicio.Companion.preferencias
 import com.example.minimarketautonomo.Inicio.Companion.room
 import com.example.minimarketautonomo.R
 import com.example.minimarketautonomo.navigation.AppScreens
@@ -127,7 +128,7 @@ fun FormularioInicioSesion(navController: NavController){
                 onClick = {
                     //if (usuario.value == preferencias.getCorreo() && contraseña.value == preferencias.getContraseña() )
                     scope.launch {
-                        if (room.getUsuarioDao().getAllUsuarios().any { it.Correo == correo.value })
+                        if (room.getUsuarioDao().getAllUsuarios().any { it.Correo == correo.value && it.Contraseña == contraseña.value })
                         {
                             navController.popBackStack()
                             navController.navigate(route = AppScreens.Home.route)

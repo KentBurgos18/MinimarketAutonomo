@@ -11,7 +11,7 @@ import com.example.minimarketautonomo.database.entidades.PedidoEntity
 import com.example.minimarketautonomo.database.entidades.QuejaEntity
 import com.example.minimarketautonomo.database.entidades.UsuarioEntity
 
-@Database(entities= [UsuarioEntity::class, PagoEntity::class, QuejaEntity::class, PedidoEntity::class], version = 2)
+@Database(entities= [UsuarioEntity::class, PagoEntity::class, QuejaEntity::class, PedidoEntity::class], version = 5)
 abstract class MinimarketDatabase: RoomDatabase() {
     abstract fun getUsuarioDao(): UsuarioDao
     abstract fun getPagoDao(): PagoDao

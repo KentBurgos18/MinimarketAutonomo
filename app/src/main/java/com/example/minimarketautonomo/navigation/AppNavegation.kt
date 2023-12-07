@@ -5,9 +5,13 @@ import androidx.compose.ui.input.key.Key.Companion.Home
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.minimarketautonomo.screen.EditarPago
+import com.example.minimarketautonomo.screen.EliminarPago
 import com.example.minimarketautonomo.screen.Home
 import com.example.minimarketautonomo.screen.IniciarSesion
 import com.example.minimarketautonomo.screen.Pago
+import com.example.minimarketautonomo.screen.PagoCrud
+import com.example.minimarketautonomo.screen.PagosRegistrados
 import com.example.minimarketautonomo.screen.Producto
 import com.example.minimarketautonomo.screen.Registro
 import com.example.minimarketautonomo.screen.SplashScreen
@@ -33,6 +37,18 @@ fun AppNavegation() {
         }
         composable(route = AppScreens.Pago.route){
             Pago(navController)
+        }
+        composable(route = AppScreens.PagoCrud.route){
+            PagoCrud(navController)
+        }
+        composable(route = AppScreens.PagosRegistrados.route){
+            PagosRegistrados(navController)
+        }
+        composable(route = AppScreens.EditarPago.route){
+            EditarPago(navController)
+        }
+        composable(route = AppScreens.EliminarPago.route){
+            EliminarPago(navController)
         }
 
     }
